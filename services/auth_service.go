@@ -3,7 +3,7 @@ package services
 import (
 	"github.com/abkristanto/go-gin-movies/dtos"
 	"github.com/abkristanto/go-gin-movies/models"
-	m "github.com/abkristanto/go-gin-movies/repositories"
+	a "github.com/abkristanto/go-gin-movies/repositories"
 )
 
 type AuthService interface {
@@ -11,11 +11,11 @@ type AuthService interface {
 }
 
 type authService struct {
-	authRepository m.AuthRepository
+	authRepository a.AuthRepository
 }
 
 type ASConfig struct {
-	AuthRepository m.AuthRepository
+	AuthRepository a.AuthRepository
 }
 
 func NewAuthService(c *ASConfig) AuthService {

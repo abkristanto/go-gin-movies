@@ -15,8 +15,10 @@ func main() {
 			"message": "pong",
 		})
 	})
-	r.GET("/movies", h.GetMovies)
+	r.POST("/movies", h.CreateMovie)
 	r.POST("/register", h.RegisterUser)
+	r.POST("/genres", h.CreateGenre)
+	r.GET("/genres/:id", h.GetGenreById)
 	err := r.Run()
 	if err != nil {
 		panic(err)
