@@ -8,6 +8,7 @@ import (
 
 type MovieService interface {
 	CreateMovie(createMovieRequest *dtos.CreateMovieRequest) (*dtos.CreateMovieResponse, error)
+	DeleteMovie(id int) error
 }
 
 type movieService struct {
@@ -55,12 +56,20 @@ func (m *movieService) CreateMovie(createMovieRequest *dtos.CreateMovieRequest) 
 	}
 
 	movieResponse := &dtos.CreateMovieResponse{
-		ID: movie.ID,
-		Title: movie.Title,
-		Image: movie.Image,
+		ID:       movie.ID,
+		Title:    movie.Title,
+		Image:    movie.Image,
 		Synopsis: movie.Synopsis,
-		Genres: genreResponses,
+		Genres:   genreResponses,
 	}
 
 	return movieResponse, nil
+}
+
+func (m *movieService) DeleteMovie(id int) error {
+	err := m.movieRepository.DeleteMovie(id)
+	if err != nil {
+		return err 
+	}
+	return nil
 }
